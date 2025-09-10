@@ -1,0 +1,79 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main{
+    flex: 1;
+}
+
+h3{
+    text-align: center;
+    color: #03bbf8b0;
+}
+
+.services{
+    background-color: #010c15;
+}
+
+.list-services{
+    background-color: #efeeef;
+}
+
+/* Servicios*/
+.service-row {
+    margin-bottom: 2rem;
+}
+
+.service-row:last-child {
+    margin-bottom: 0;
+}
+
+.service1-image {
+    background: url('img/agua_3.jpg');
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+@media (max-width: 992px) {
+  .service1-image {
+        min-height: 40vh;
+    }
+}
+
+
+.service2-image {
+    background: url('img/agua_2.jpg'); 
+    background-size: cover;
+    background-position: center 40%;
+    position: relative;
+}
+@media (max-width: 992px) {
+  .service2-image {
+        min-height: 40vh;
+    }
+}
+
+.service-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+.service-content h4 {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.service-content p {
+    color: #495057;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
