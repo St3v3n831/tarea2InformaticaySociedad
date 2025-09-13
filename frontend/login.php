@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include_once '../../backend/business/sesionBusiness.php';
+include_once '../backend/business/sesionBusiness.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'] ?? '';
@@ -11,11 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_role'] = $resultado['tbsesionrol'];
         $_SESSION['user_id'] = $resultado['tbsesionid'];
         $_SESSION['productor_id'] = $resultado['tbsesionproductorid'];
-        header('Location: /frontend/index.html');
+        header('Location: ./index.html');
         exit();
     } else {
         // Redirige a login.html con parámetro error=1
-        header('Location: /frontend/view/login.html?error=1');
+        header('Location: ./login.html?error=1');
         exit();
     }
 }
