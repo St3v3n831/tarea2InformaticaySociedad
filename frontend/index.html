@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../frontend/view/css/dashboard.css">
+    <title>Sistema de Servicios</title>
+    <style>
+        body { margin: 20px; font-family: Arial, sans-serif; }
+        header { text-align: center; }
+        a { text-decoration: none; color: black; padding: 5px; display: block; }
+        a:hover { text-decoration: underline; }
+        hr { border: none; border-top: 2px solid #ccc; margin: 20px 0; }
+        .container { margin: 20px auto; }
+        .section { padding: 10px; border: 1px solid #ccc; margin-bottom: 20px; }
+        h2 { margin-bottom: 10px; color: #333; }
+        .sub-section { padding-left: 20px; }
+        h3 { margin-top: 15px; color: #555; }
+    </style>
+</head>
+<body>
+    <header>
+        <hr>
+        <h1>Sistema de Servicios</h1>
+        <hr>
+    </header>
+
+    <nav>
+        <a href="../frontend/view/login.html">Cerrar Sesión</a>
+    </nav>
+
+    <div class="container">
+        <div id="admin-section" style="display:none;">
+            <div class="section">
+                <h2>Administración General</h2>
+                <br><hr>
+                <a href="../frontend/view/servicioView.html">Administración de Servicios</a>
+            </div>
+        </div>
+        <div id="user-message">Verificando permisos...</div>
+    </div>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Verificar si el usuario está autenticado
+        $.ajax({
+            url: '../backend/action/servicioAction.php',
+            method: 'POST',
+            data: { option: 0 },
+            success: function(response) {
+                try {
+                    const userType = parseInt(response);
+                    if (userType === 0) {
+                        $('#admin-section').show();
+                        $('#user-message').hide();
+                    } else {
+                        $('#user-message').html('No tienes permisos de administrador. <a href="logout.html">Cerrar sesión</a>');
+                    }
+                } catch (e) {
+                    window.location.href = 'login.html';
+                }
+            },
+            error: function() {
+                window.location.href = 'login.html';
+            }
+        });
+    });
+    </script>
+</body>
+</html>

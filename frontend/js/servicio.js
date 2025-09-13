@@ -7,7 +7,7 @@ if (typeof actualUserType === 'undefined') {
 
 function obtenerTipoUsuario() {
     return new Promise((resolve) => {
-        $.post('../action/servicioAction.php', { option: 0 }, function (response) {
+        $.post('../../backend/action/servicioAction.php', { option: 0 }, function (response) {
             let data = JSON.parse(response);
             actualUserType = data.userType; // Asignar el tipo de usuario a la variable global
             resolve(actualUserType);
@@ -58,7 +58,7 @@ function validarCampos(codigo, nombre, descripcion, isCodigoRequired) {
 function verificarNombreSimilar(nombre) {
     return new Promise((resolve) => {
         const dataSimilar = { option: 7, nombre: nombre };
-        let url = '../action/servicioAction.php';
+        let url = '../../backend/action/servicioAction.php';
         $.post(url, dataSimilar, function (similarResponse) {
             try {
                 let similarServicios = JSON.parse(similarResponse);
@@ -80,7 +80,7 @@ function verificarNombreSimilar(nombre) {
 function verificarCodigoExistente(codigo) {
     return new Promise((resolve) => {
         const data = { option: 6, codigo: codigo };
-        let url = '../action/servicioAction.php';
+        let url = '../../backend/action/servicioAction.php';
         $.post(url, data, function (response) {
             if (response.trim() === "0") {
                 resolve(true);
@@ -95,7 +95,7 @@ function verificarCodigoExistente(codigo) {
 function obtenerServicio() {
     let option = 2;
     $.ajax({
-        url: '../action/servicioAction.php',
+        url: '../../backend/action/servicioAction.php',
         data: {
             option: option
         },
@@ -132,7 +132,7 @@ function mostrarServiciosInactivos() {
     let option = 8;
 
     $.ajax({
-        url: '../action/servicioAction.php',
+        url: '../../backend/action/servicioAction.php',
         data: { option: option },
         type: 'POST',
         success: function (response) {
@@ -195,7 +195,7 @@ $(document).ready(function () {
                 let descripcion = document.getElementById('descripcionservicio').value;
 
                 let opc = indicatorEdit === false ? 1 : 5;
-                let url = "../action/servicioAction.php";
+                let url = '../../backend/action/servicioAction.php';
                 const data = {
                     option: opc,
                     codigo: codigo,
@@ -231,7 +231,7 @@ $(document).ready(function () {
             codigo: codigo
         }
 
-        let url = "../action/servicioAction.php";
+        let url = '../../backend/action/servicioAction.php';
 
         $.post(url, data, function (response) {
             let result = response.trim();
@@ -252,7 +252,7 @@ $(document).ready(function () {
             option: 4,
             codigo: codigo
         }
-        let url = "../action/servicioAction.php";
+        let url = '../../backend/action/servicioAction.php';
         $.post(url, data, function (response) {
             // recivimos la respuesta y la convertimos a formato json
             const servicio = JSON.parse(response);
@@ -279,7 +279,7 @@ $(document).ready(function () {
             codigo: codigo
         };
 
-        let url = '../action/servicioAction.php';
+        let url = '../../backend/action/servicioAction.php';
 
         $.post(url, data, function (response) {
             let result = response.trim();

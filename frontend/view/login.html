@@ -1,31 +1,9 @@
-<?php
-include_once '../business/sesionBusiness.php';
-session_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $sesionBusiness = new SesionBusiness();
-    $resultado = $sesionBusiness->autenticarUsuario($username, $password);
-
-    if ($resultado) {  // Si el resultado no es null, las credenciales son correctas
-        // Guardar el rol y el ID en la sesión si las credenciales son correctas
-        $_SESSION['user_role'] = $resultado['tbsesionrol'];
-        $_SESSION['user_id'] = $resultado['tbsesionid'];
-        $_SESSION['productor_id'] = $resultado['tbsesionproductorid'];
-        header('Location: ../index.php');
-        // exit();
-    } else {
-        $error = "Credenciales inválidas o usuario inactivo.";
-    }
-}
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <link rel="stylesheet" href="css/login.css">
+    <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
     <style>
         body {
             display: flex;
@@ -46,23 +24,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         hr {
             margin: 20px 0;
         }
+        .error {
+            color: red;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <h2>Inicio de Sesión</h2>
         <hr>
-        <?php if (isset($error)): ?>
-            <p><?php echo htmlspecialchars($error); ?></p>
-        <?php endif; ?>
+
+        <div id="error-message" class="error" style="display:none; color:red; margin-bottom:15px;">
+            Credenciales inválidas o usuario inactivo.
+        </div>
+
         <form method="post" action="login.php">
             <label for="username">Correo Electrónico:</label><br>
             <input type="text" id="username" name="username" required><br>
+
             <label for="password">Contraseña:</label><br>
             <input type="password" id="password" name="password" required><br>
+
             <button type="submit">Login</button>
         </form>
         <hr>
     </div>
+
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        if (getQueryParam('error') === '1') {
+            document.getElementById('error-message').style.display = 'block';
+        }
+    </script>
 </body>
+
 </html>

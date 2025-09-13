@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../view/css/servicio.css">
+    <title>Seccion Servicios</title>
+    <style>
+        body { margin: 20px; }
+        header { text-align: center; }
+        header li { text-align: left; list-style-type: none; }
+        input { margin-bottom: 10px; margin-left: 10px; }
+        hr { border: 1px solid #ccc; margin: 15px 0; }
+        table, th, td { border-collapse: collapse; }
+        th, td { padding: 10px; border-right: 1px solid #ccc; }
+        th:last-child, td:last-child { border-right: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <li><button id="btn-volver">Volver</button></li>
+        <hr>
+        <h1>Administración de los Servicios</h1>
+    </header>
+
+    <div>
+        <hr>
+        <button id="toggleInactivos">Ver Inactivos</button>
+        <br /><br />
+        <div id="listaInactivos" style="display:none;">
+            <table id="tablaInactivos">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="listaInactivosCuerpo"></tbody>
+            </table>
+        </div>
+        <hr>
+    </div><br>
+
+    <div class="insertarServicio" id="insertarServicio">
+        <div class="container">
+            <form class="insertarServicio" novalidate id="forminsertServicio">
+                <div>
+                    <label for="codigo">Codigo</label>
+                    <input type="text" id="codigoservicio" required>
+                </div>
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombreservicio" required>
+                </div>
+                <div>
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" id="descripcionservicio" required>
+                </div>
+                <br>
+                <div id="btnRegistrar">
+                    <button type="submit" class="nuevoRegistro">Registrar</button>
+                    <button id="cancelar" type="button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr><br>
+    <div class="container" id="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="listaServicio"></tbody>
+        </table>
+    </div>
+    <hr>
+    
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/servicio.js"></script>
+    <script>
+    // Configuración base para las llamadas AJAX
+    const API_BASE = '../backend/action/servicioAction.php';
+    
+    // Redirigir al index al hacer clic en Volver
+    document.getElementById('btn-volver').addEventListener('click', function() {
+        window.location.href = '../index.html';
+    });
+    
+    // Actualizar servicio.js para usar la ruta correcta del API
+    // Necesitarás modificar servicio.js para que todas las llamadas $.post usen API_BASE
+    </script>
+</body>
+</html>

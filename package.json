@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "dev": "php -S localhost:8000",
-    "build": "echo 'Building PHP project'",
-    "vercel-build": "composer install --no-dev --optimize-autoloader"
-  }
-}
